@@ -6,7 +6,7 @@
 /*   By: opektas <opektas@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 23:30:58 by opektas           #+#    #+#             */
-/*   Updated: 2026/03/29 02:11:25 by opektas          ###   ########.fr       */
+/*   Updated: 2026/04/05 22:56:17 by opektas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ft_dispatch(char type, va_list args)
 				"0123456789ABCDEF", 16));
 	else if (type == '%')
 		return (ft_putchar('%'));
-	return (0);
+	return (write(1, "%", 1) + write(1, &type, 1));
 }
 
 int	ft_printf(const char *format, ...)
