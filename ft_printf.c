@@ -40,21 +40,21 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		count;
-	int		i;
+	int		index;
 
 	va_start(args, format);
 	count = 0;
-	i = 0;
-	while (format[i])
+	index = 0;
+	while (format[index])
 	{
-		if (format[i] == '%')
+		if (format[index] == '%')
 		{
-			i++;
-			count += ft_dispatch(format[i], args);
+			index++;
+			count += ft_dispatch(format[index], args);
 		}
 		else
-			count += ft_putchar(format[i]);
-		i++;
+			count += ft_putchar(format[index]);
+		index++;
 	}
 	va_end(args);
 	return (count);

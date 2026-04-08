@@ -6,7 +6,7 @@
 #    By: opektas <opektas@student.42kocaeli.com.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/28 00:00:00 by opektas           #+#    #+#              #
-#    Updated: 2026/03/28 00:00:00 by opektas          ###   ########.fr        #
+#    Updated: 2026/04/06 02:06:45 by opektas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
