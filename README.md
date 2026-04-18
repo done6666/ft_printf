@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by opektas.*
+_This project has been created as part of the 42 curriculum by opektas._
 
 # ft_printf
 
@@ -9,23 +9,24 @@
 The function parses a format string character by character. When it encounters a `%` followed by a conversion specifier, it pulls the next argument from the variadic list and dispatches it to the appropriate output function. For all other characters, it writes them directly to stdout. The total number of characters written is tracked and returned.
 
 **Prototype:**
+
 ```c
 int ft_printf(const char *format, ...);
 ```
 
 **Supported conversion specifiers:**
 
-| Specifier | Output |
-|-----------|--------|
-| `%c` | Single character |
-| `%s` | String of characters (`(null)` if NULL) |
-| `%p` | Pointer address in hexadecimal (`0x...`, `(nil)` if NULL) |
-| `%d` | Signed decimal integer |
-| `%i` | Signed integer in base 10 |
-| `%u` | Unsigned decimal integer |
-| `%x` | Unsigned hexadecimal integer (lowercase) |
-| `%X` | Unsigned hexadecimal integer (uppercase) |
-| `%%` | Literal `%` character |
+| Specifier | Output                                                    |
+| --------- | --------------------------------------------------------- |
+| `%c`      | Single character                                          |
+| `%s`      | String of characters (`(null)` if NULL)                   |
+| `%p`      | Pointer address in hexadecimal (`0x...`, `(nil)` if NULL) |
+| `%d`      | Signed decimal integer                                    |
+| `%i`      | Signed integer in base 10                                 |
+| `%u`      | Unsigned decimal integer                                  |
+| `%x`      | Unsigned hexadecimal integer (lowercase)                  |
+| `%X`      | Unsigned hexadecimal integer (uppercase)                  |
+| `%%`      | Literal `%` character                                     |
 
 ### Algorithm and Data Structure
 
@@ -54,18 +55,19 @@ cc -Wall -Wextra -Werror your_file.c libftprintf.a -o your_program
 ```
 
 Include the header in your source:
+
 ```c
 #include "ft_printf.h"
 ```
 
 ### Makefile rules
 
-| Rule | Description |
-|------|-------------|
-| `make` / `make all` | Compile the static library |
-| `make clean` | Remove object files |
-| `make fclean` | Remove object files and the library |
-| `make re` | Full rebuild |
+| Rule                | Description                         |
+| ------------------- | ----------------------------------- |
+| `make` / `make all` | Compile the static library          |
+| `make clean`        | Remove object files                 |
+| `make fclean`       | Remove object files and the library |
+| `make re`           | Full rebuild                        |
 
 ### Example
 
@@ -91,6 +93,7 @@ int main(void)
 ### References
 
 - [printf(3) — Linux manual page](https://man7.org/linux/man-pages/man3/printf.3.html)
+- [fprintf(), printf() — POSIX (The Open Group)](https://pubs.opengroup.org/onlinepubs/9699919799/functions/fprintf.html)
 - [stdarg.h — cppreference](https://en.cppreference.com/w/c/variadic)
 - [va_start, va_arg, va_end — cppreference](https://en.cppreference.com/w/c/variadic/va_start)
 - [Variadic functions in C — GNU C Library](https://www.gnu.org/software/libc/manual/html_node/Variadic-Functions.html)
