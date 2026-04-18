@@ -12,50 +12,55 @@
 
 #include "ft_printf.h"
 
-static int	ft_dispatch(char type, va_list args)
+static int ft_dispatch(char type, va_list args)
 {
-	if (type == 'c')
-		return (ft_putchar((char)va_arg(args, int)));
-	else if (type == 's')
-		return (ft_putstr(va_arg(args, char *)));
-	else if (type == 'p')
-		return (ft_putptr(va_arg(args, void *)));
-	else if (type == 'd' || type == 'i')
-		return (ft_putnbr(va_arg(args, int)));
-	else if (type == 'u')
-		return (ft_putnbr_base(va_arg(args, unsigned int),
-				"0123456789", 10));
-	else if (type == 'x')
-		return (ft_putnbr_base(va_arg(args, unsigned int),
-				"0123456789abcdef", 16));
-	else if (type == 'X')
-		return (ft_putnbr_base(va_arg(args, unsigned int),
-				"0123456789ABCDEF", 16));
-	else if (type == '%')
-		return (ft_putchar('%'));
-	return (write(1, "%", 1) + write(1, &type, 1));
+    if (type == 'c')
+        return (ft_putchar((char)va_arg(args, int)));
+    else if (type == 's')
+        return (ft_putstr(va_arg(args, char *)));
+    else if (type == 'p')
+        return (ft_putptr(va_arg(args, void *)));
+    else if (type == 'd' || type == 'i')
+        return (ft_putnbr(va_arg(args, int)));
+    else if (type == 'u')
+        return (ft_putnbr_base(va_arg(args, unsigned int),
+                               "0123456789", 10));
+    else if (type == 'x')
+        return (ft_putnbr_base(va_arg(args, unsigned int),
+                               "0123456789abcdef", 16));
+    else if (type == 'X')
+        return (ft_putnbr_base(va_arg(args, unsigned int),
+                               "0123456789ABCDEF", 16));
+    else if (type == '%')
+        return (ft_putchar('%'));
+    return (write(1, "%", 1) + write(1, &type, 1));
 }
 
-int	ft_printf(const char *format, ...)
+int ft_printf(const char *format, ...)
 {
-	va_list	args;
-	int		count;
-	int		index;
+    va_list args;
+    int count;
+    int index;
 
-	va_start(args, format);
-	count = 0;
-	index = 0;
-	while (format[index])
-	{
-		if (format[index] == '%')
-		{
-			index++;
-			count += ft_dispatch(format[index], args);
-		}
-		else
-			count += ft_putchar(format[index]);
-		index++;
-	}
-	va_end(args);
-	return (count);
+    va_start(args, format);
+    count = 0;
+    index = 0;
+    while (format[index])
+    {
+        if (format[index] == '%')
+        {
+            index++;
+            if (!format[index])
+            {
+                count = -1;
+                break;
+            }
+            count += ft_dispatch(format[index], args);
+        }
+        else
+            count += ft_putchar(format[index]);
+        index++;
+    }
+    va_end(args);
+    return (count);
 }
