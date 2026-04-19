@@ -21,6 +21,6 @@ int	ft_putstr(char *s)
 	index = 0;
 	while (s[index])
 		index++;
-	write(1, s, index);
+	(void)write(1, s, index);
 	return (index);
 }

@@ -6,7 +6,7 @@
 /*   By: opektas <opektas@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 23:30:58 by opektas           #+#    #+#             */
-/*   Updated: 2026/04/19 01:37:15 by opektas          ###   ########.fr       */
+/*   Updated: 2026/04/19 06:34:17 by opektas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ static int	ft_dispatch(char type, va_list args)
 	return (write(1, "%", 1) + write(1, &type, 1));
 }
 
-int	ft_printf(const char *format, ...)
+static int	ft_parse(const char *format, va_list args)
 {
-	va_list	args;
-	int		count;
-	int		index;
+	int	count;
+	int	index;
 
-	va_start(args, format);
 	count = 0;
 	index = 0;
 	while (format[index])
@@ -50,16 +48,25 @@ int	ft_printf(const char *format, ...)
 		{
 			index++;
 			if (!format[index])
-			{
-				count = -1;
-				break ;
-			}
+				return (-1);
 			count += ft_dispatch(format[index], args);
 		}
 		else
 			count += ft_putchar(format[index]);
 		index++;
 	}
+	return (count);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	va_list	args;
+	int		count;
+
+	if (!format)
+		return (-1);
+	va_start(args, format);
+	count = ft_parse(format, args);
 	va_end(args);
 	return (count);
 }
